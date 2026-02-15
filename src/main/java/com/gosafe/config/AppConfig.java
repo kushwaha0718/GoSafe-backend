@@ -25,7 +25,8 @@ public class AppConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(List.of(
             "http://localhost:5173",
-            "http://localhost:4173"
+            "http://localhost:4173",
+                "https://gosafe.onrender.com/"
         ));
         config.setAllowedMethods(List.of("GET", "POST", "PATCH", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
@@ -40,7 +41,7 @@ public class AppConfig {
     @Bean
     public FilterRegistrationBean<JwtFilter> jwtFilterRegistration() {
         FilterRegistrationBean<JwtFilter> reg = new FilterRegistrationBean<>(jwtFilter);
-        reg.addUrlPatterns("/api/*");
+        reg.addUrlPatterns("/*");
         reg.setOrder(2); // runs after CorsFilter
         return reg;
     }
